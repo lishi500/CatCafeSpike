@@ -7,22 +7,20 @@ public class InteractPoint : MonoBehaviour
     public bool isOccupied = false;
     public bool isReserved;
 
-    public Cat occupyCat;
-    public Customer occupyCustomer;
+    public Cat reserveCat;
+    public Customer reserveCustomer;
 
     public Vector3 GetPosition() {
         return transform.position;
     }
-    public void CatOccupy(Cat cat) {
+    public void CatOccupy() {
         if (CanOccupy()) {
             Occupy();
-            occupyCat = cat;
         }
     }
-    public void CustomerOccupy(Customer customer) {
+    public void CustomerOccupy() {
         if (CanOccupy()) {
             Occupy();
-            occupyCustomer = customer;
         }
     }
     public bool CanOccupy() {
@@ -37,17 +35,24 @@ public class InteractPoint : MonoBehaviour
         return !isOccupied && !isReserved;
     }
 
-    public void Reserve() {
+    public void Reserve(Cat cat) {
         if (!isOccupied && !isReserved) {
             isReserved = true;
+            reserveCat = cat;
+        }
+    }
+    public void Reserve(Customer customer) {
+        if (!isOccupied && !isReserved) {
+            isReserved = true;
+            reserveCustomer = customer;
         }
     }
 
     public void ReleasePoint() {
         isOccupied = false;
         isReserved = false;
-        occupyCat = null;
-        occupyCustomer = null;
+        reserveCat = null;
+        reserveCustomer = null;
     }
 
 }

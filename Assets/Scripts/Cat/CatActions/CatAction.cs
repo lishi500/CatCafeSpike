@@ -13,7 +13,6 @@ public abstract class CatAction : MonoBehaviour
     public delegate void CatActionEndEvent(CatAction action);
     public event CatActionEndEvent notifyCatActionEnd;
 
-    public abstract bool ApproachingInteractionPostion();
 
     public void SetActionTarget(GameObject obj, Vector3 tar, Cat cat) {
         interactionObject = obj;
@@ -22,13 +21,17 @@ public abstract class CatAction : MonoBehaviour
     }
 
     public virtual void StartAction() {
-        if (ApproachingInteractionPostion()) {
+        if (CanStartAction()) {
             OnActionStarted();
             Action();
         }
+       
     }
-
+    public abstract bool CanStartAction();
     protected abstract void Action();
+    protected abstract void ActionAnimation();
+    protected abstract void ActionEnd();
+
 
     public virtual void OnActionStarted() {
         if (notifyCatActionStart != null) {
@@ -39,6 +42,7 @@ public abstract class CatAction : MonoBehaviour
         if (notifyCatActionEnd != null) {
             notifyCatActionEnd(this);
         }
+        ActionEnd();
     }
 
 }

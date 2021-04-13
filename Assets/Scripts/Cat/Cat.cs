@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Cat : MonoBehaviour
 {
     public Body body;
-    public Attriburte attriburte;
+    public CatAttriburte attriburte;
     
 
 }

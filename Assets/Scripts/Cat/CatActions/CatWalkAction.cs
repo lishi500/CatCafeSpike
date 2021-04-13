@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class CatWalkAction : CatAction
 {
-    public override bool ApproachingInteractionPostion() {
-        return false;
+  
+    public override bool CanStartAction() {
+        return true;
     }
 
     protected override void Action() {
         if (cat != null) {
             StartCoroutine(WalkToPos());
         }
+    }
+
+    protected override void ActionAnimation() {
+        TextUtil.Instance.SetFollowText(cat.gameObject, "Walk");
+    }
+
+    protected override void ActionEnd() {
+        TextUtil.Instance.SetFollowText(cat.gameObject, cat.name);
     }
 
     IEnumerator WalkToPos() {
@@ -21,6 +30,7 @@ public class CatWalkAction : CatAction
         float etc = distance / cat.attriburte.walkSpeed;
         bool reachTarget = false;
         float elapsedTime = 0f;
+        ActionAnimation();
 
         while (!reachTarget) {
             if (Vector3.Distance(cat.transform.position, endPos) < 0.01f) {

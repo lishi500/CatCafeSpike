@@ -2,42 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodBow : Furniture
-{
-    public int maxFood;
+public class FoodBow : FurnitureBase {
     public int currentFood;
+    public int maxFood;
 
-    public override bool CanCatInteract() {
-        return GetAvaiableInteractionPoint() != null;
+    public override bool CanCatInteract(Cat cat) {
+        foreach (InteractPoint interactPoint in interactPoints) {
+            if (interactPoint.reserveCat == cat) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    public override bool CanCustomerInteract() {
+    public override bool CanCustomerInteract(Customer customer) {
         return false;
     }
 
 
-    protected override void OnCatInteraction(Cat cat) {
-
+    public override void CatInteraction(Cat cat) {
+        
     }
 
-    protected override void OnCustomerInteraction(Customer customer) {
-        
+    public override void CustomerInteraction(Customer customer) {
     }
 
     protected override void OnUserClick() {
 
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private void UpdateFoodCount() { 
+        TextUtil.Instance.SetFollowText(gameObject, currentFood + "/" + maxFood);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Start() {
+        UpdateFoodCount();
     }
 }

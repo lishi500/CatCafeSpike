@@ -11,7 +11,7 @@ public class CommonUtil : Singleton<CommonUtil>
     }
 
     public GameObject GetPrefabByName(string name) {
-        return (GameObject) Resources.Load("Prefab/" + name);
+        return (GameObject) Resources.Load("Prefabs/" + name);
         
     }
 }

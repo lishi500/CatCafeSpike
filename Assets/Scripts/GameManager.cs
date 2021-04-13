@@ -5,16 +5,23 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Cat testCat;
-    public Furniture targetFurniture;
+    public FurnitureBase targetFurniture;
+    public GameObject actionHolder;
+    public CatCafe catCafe;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        catCafe = GetComponent<CatCafe>();
     }
 
     private void TestFunction() {
-       
+        CatWalkAction walkAction = actionHolder.AddComponent<CatWalkAction>();
+        FurnitureBase foodBow = catCafe.GetFurnitureByType(FurnitureType.Food);
+        InteractPoint point = foodBow.GetAvaiableInteractionPoint();
+        point.Reserve(testCat);
+        walkAction.SetActionTarget(null, point.transform.position, testCat);
+        walkAction.StartAction();
     }
 
     int delayAction = 5;
