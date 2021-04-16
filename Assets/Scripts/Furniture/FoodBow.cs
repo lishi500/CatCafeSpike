@@ -7,9 +7,11 @@ public class FoodBow : FurnitureBase {
     public int maxFood;
 
     public override bool CanCatInteract(Cat cat) {
-        foreach (InteractPoint interactPoint in interactPoints) {
-            if (interactPoint.reserveCat == cat) {
-                return true;
+        if (currentFood > 0) {
+            foreach (InteractPoint interactPoint in interactPoints) {
+                if (interactPoint.reserveCat == cat) {
+                    return true;
+                }
             }
         }
 
@@ -22,14 +24,21 @@ public class FoodBow : FurnitureBase {
 
 
     public override void CatInteraction(Cat cat) {
-        
+        if (CanCatInteract(cat)) {
+            currentFood -= 1;
+            UpdateFoodCount();
+        }
     }
 
     public override void CustomerInteraction(Customer customer) {
+
     }
 
     protected override void OnUserClick() {
-
+        int needToFill = maxFood - currentFood;
+        int withdraw = Storage.Instance.WithdrawCatFood(needToFill);
+        currentFood += withdraw;
+        UpdateFoodCount();
     }
 
     private void UpdateFoodCount() { 

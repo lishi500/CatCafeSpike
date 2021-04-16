@@ -32,17 +32,17 @@ public class InteractPoint : MonoBehaviour
     }
 
     public bool CanReserve() {
-        return !isOccupied && !isReserved;
+        return !isReserved;
     }
 
     public void Reserve(Cat cat) {
-        if (!isOccupied && !isReserved) {
+        if (CanReserve()) {
             isReserved = true;
             reserveCat = cat;
         }
     }
     public void Reserve(Customer customer) {
-        if (!isOccupied && !isReserved) {
+        if (CanReserve()) {
             isReserved = true;
             reserveCustomer = customer;
         }

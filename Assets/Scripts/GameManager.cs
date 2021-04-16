@@ -16,12 +16,20 @@ public class GameManager : MonoBehaviour
     }
 
     private void TestFunction() {
-        CatWalkAction walkAction = actionHolder.AddComponent<CatWalkAction>();
         FurnitureBase foodBow = catCafe.GetFurnitureByType(FurnitureType.Food);
-        InteractPoint point = foodBow.GetAvaiableInteractionPoint();
-        point.Reserve(testCat);
-        walkAction.SetActionTarget(null, point.transform.position, testCat);
-        walkAction.StartAction();
+        InteractPoint point = foodBow.ReserveInteractionPoint(testCat);
+
+        CatWalkTask walkTask = actionHolder.AddComponent<CatWalkTask>();
+        walkTask.SetTaskTarget(null, point.transform.position, testCat);
+
+        CatEatTask eatTask = actionHolder.AddComponent<CatEatTask>();
+        eatTask.SetTaskTarget(foodBow.gameObject, Vector3.zero, testCat);
+
+        TaskChain chain = actionHolder.AddComponent<TaskChain>();
+        chain.PushTask(walkTask);
+        chain.PushTask(eatTask);
+
+        chain.StartTaskChain();
     }
 
     int delayAction = 5;

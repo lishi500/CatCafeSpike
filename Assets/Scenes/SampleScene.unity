@@ -337,8 +337,8 @@ MonoBehaviour:
   interactingCats: []
   interactingCustomer: []
   interactPoints: []
-  maxFood: 10
   currentFood: 8
+  maxFood: 10
 --- !u!114 &278468079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,8 +396,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOccupied: 0
   isReserved: 0
-  occupyCat: {fileID: 0}
-  occupyCustomer: {fileID: 0}
+  reserveCat: {fileID: 0}
+  reserveCustomer: {fileID: 0}
 --- !u!1001 &320954896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -950,6 +950,7 @@ GameObject:
   - component: {fileID: 619160144}
   - component: {fileID: 619160143}
   - component: {fileID: 619160145}
+  - component: {fileID: 619160146}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1003,6 +1004,22 @@ MonoBehaviour:
   furnitures:
     count: 5
     foodBow: {fileID: 278468078}
+--- !u!114 &619160146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619160142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608c3d4a27271bf4982e867a3241ec07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: 100
+  catFood: 150
+  catCan: 5
+  heart: 0
 --- !u!1001 &738553662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1410,8 +1427,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOccupied: 0
   isReserved: 0
-  occupyCat: {fileID: 0}
-  occupyCustomer: {fileID: 0}
+  reserveCat: {fileID: 0}
+  reserveCustomer: {fileID: 0}
 --- !u!1 &988850533
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,8 +1737,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOccupied: 0
   isReserved: 0
-  occupyCat: {fileID: 0}
-  occupyCustomer: {fileID: 0}
+  reserveCat: {fileID: 0}
+  reserveCustomer: {fileID: 0}
 --- !u!1001 &1742869832
 PrefabInstance:
   m_ObjectHideFlags: 0
