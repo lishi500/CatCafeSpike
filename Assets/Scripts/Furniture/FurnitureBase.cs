@@ -45,7 +45,7 @@ public abstract class FurnitureBase : MonoBehaviour
         return null;
     }
 
-    void Awake()
+    public virtual void Awake()
     {
         interactPoints = GetComponentsInChildren<InteractPoint>();
     }

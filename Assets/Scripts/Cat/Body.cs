@@ -16,4 +16,11 @@ public class Body
     public float moodMax = 100;
 
     // sick
+    public void Eat() {
+        hunger = hungerMax;
+    }
+
+    public void Drink() {
+        thirst = thirstMax;
+    }
 }

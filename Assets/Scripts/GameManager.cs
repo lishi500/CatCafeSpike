@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public FurnitureBase targetFurniture;
     public GameObject actionHolder;
     public CatCafe catCafe;
+    public Ball ball;
     
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
         chain.PushTask(eatTask);
 
         chain.StartTaskChain();
+        ball.KnockBy(testCat.transform.position);
     }
 
     int delayAction = 5;
