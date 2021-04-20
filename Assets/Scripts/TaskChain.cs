@@ -42,7 +42,7 @@ public class TaskChain : MonoBehaviour {
     private void ExecuteCurrentTask() {
         isExecuting = true;
         Debug.Log("Executing task " + currentTask.taskName);
-        StartCoroutine(currentTask.StartTask());
+        currentTask.StartTask();
     }
 
     private void ListenTaskEnd(Task task) {

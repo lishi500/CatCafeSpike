@@ -7,18 +7,30 @@ public abstract class Task : MonoBehaviour
     public GameObject interactionObject;
     public Vector3 targetPosition;
     public string taskName;
+    public bool canInterrupt;
+    private bool isInterrupted;
+    private Coroutine currentCoroutine;
 
     public delegate void TaskStartEvent(Task task);
     public event TaskStartEvent notifyTaskStart;
     public delegate void TaskEndEvent(Task task);
     public event TaskEndEvent notifyTaskEnd;
+    public delegate void TaskInterruptEvent(Task task);
+    public event TaskInterruptEvent notifyTaskInterrupt;
 
-
-    public virtual IEnumerator StartTask() {
+    public virtual void StartTask() {
         if (PreTaskCheck()) {
             OnTaskStarted();
-            yield return TaskStart();
+            currentCoroutine = StartCoroutine(TaskStart());
         }
+    }
+
+    public void Interrupt() {
+        isInterrupted = true;
+        if (notifyTaskInterrupt != null) {
+            notifyTaskInterrupt(this);
+        }
+        StopCoroutine(currentCoroutine);
     }
 
     public abstract bool PreTaskCheck();
