@@ -6,6 +6,8 @@ public enum CatAIState
 {
    Idle,
    Wander,
+   LickHair,
+   Sleep,
    Eat,
    Drink,
    SelfPlay, // jump table, chase tail, jump tree

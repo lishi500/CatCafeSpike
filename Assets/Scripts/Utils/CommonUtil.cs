@@ -25,4 +25,12 @@ public class CommonUtil : Singleton<CommonUtil>
         return (GameObject) Resources.Load("Prefabs/" + name);
         
     }
+
+    public float Distance(GameObject a, GameObject b) {
+        return Distance(a.transform, b.transform);
+    }
+
+    public float Distance(Transform a, Transform b) {
+        return Vector3.Distance(a.position, b.position);
+    }
 }

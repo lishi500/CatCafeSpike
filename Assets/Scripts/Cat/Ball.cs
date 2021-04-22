@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ball : MonoBehaviour
-{
+public class Ball : CatToy {
     public float moveTime = 3f;
     private float rotatedirection = 1;
     private float pushDistance = 3f;
 
-    public void KnockBy(Vector3 fromPos) {
+
+    public override void PlayBy(Cat cat) {
+        KnockBy(cat.transform.position);
+    }
+
+    private void KnockBy(Vector3 fromPos) {
         Vector3 heading = transform.position - fromPos;
         Vector3 direction = heading / heading.magnitude;
 
@@ -81,4 +85,6 @@ public class Ball : MonoBehaviour
     {
         
     }
+
+ 
 }

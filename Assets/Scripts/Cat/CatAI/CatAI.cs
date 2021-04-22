@@ -6,26 +6,48 @@ public class CatAI : MonoBehaviour
 {
     Cat cat;
     CatAIState currentAIState;
-    Dictionary<Attribute, AICondition> attributeMapping;
+    private List<Attribute> m_bodyAttributes;
+    protected List<Attribute> BodyAttributes {
+        get { if (m_bodyAttributes == null) { m_bodyAttributes = cat.body.GetAllBodyAttributes(); } return m_bodyAttributes; }
+        set { m_bodyAttributes = value; }
+    }
+    AICondition idleCondition;
 
-    AICondition SelectNextStateByAttribute() {
-        List<Attribute> keyList = new List<Attribute>(attributeMapping.Keys);
-        Attribute winAttribute = AIUtils.Instance.AttrChanceCalc(keyList);
-        AICondition condition = attributeMapping[winAttribute];
-        return condition;
+
+    AttributeType SelectNextAttribute() {
+        List<AICondition> bodyConditions = AIUtils.Instance.ConvertToAIConditionsFromAttributes(BodyAttributes);
+        bodyConditions.Add(idleCondition);
+        AttributeType winAttribute = AIUtils.Instance.AttrChanceCalc(bodyConditions);
+
+        return winAttribute;
     }
 
-    void MapAttribute() {
-        attributeMapping.Add(cat.body.hunger, AICondition.HUNGRY);
-        attributeMapping.Add(cat.body.thirst, AICondition.THIRSTY);
-        attributeMapping.Add(cat.body.energy, AICondition.ENERGY);
-        attributeMapping.Add(cat.body.mood, AICondition.MOOD);
-        attributeMapping.Add(cat.body.tiredness, AICondition.TIREDNESS);
+    CatAIState SelectNextAIState(AttributeType type) {
+        switch (type) {
+            case AttributeType.NONE:
+                return CatAIState.Idle;
+            case AttributeType.HUNGRY:
+                return CatAIState.Eat;
+            case AttributeType.THIRSTY:
+                return CatAIState.Drink;
+            case AttributeType.MOOD:
+                return CatAIState.PlayWithCustomer;
+            case AttributeType.TIREDNESS:
+                return CatAIState.Sleep;
+            case AttributeType.ENERGY:
+                return CatAIState.PlayToy;
+            default:
+                return CatAIState.Idle;
+        }
     }
+
+    private void Awake() {
+        idleCondition = new AICondition(AttributeType.NONE, 100);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        MapAttribute();
     }
 
     // Update is called once per frame

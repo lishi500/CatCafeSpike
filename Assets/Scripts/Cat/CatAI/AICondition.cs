@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AICondition
+public class AICondition
 {
-   HUNGRY, // affect by hungry
-   THIRSTY, // affect by thirsty
-   ENERGY, // affect by sleep
-   TIREDNESS, 
-   MOOD
+    public AttributeType type;
+    public float weightedChange;
+    public AICondition(AttributeType type, float weightedChange) {
+        this.type = type;
+        this.weightedChange = weightedChange;
+    }
+
+    public static AICondition FromAttribute(Attribute attribute) {
+        return new AICondition(attribute.type, AIUtils.Instance.WeightedMissingValue(attribute));
+    }
 }

@@ -7,6 +7,7 @@ using UnityEngine;
 [Serializable]
 public class Attribute
 {
+    public AttributeType type;
     [SerializeField]
     private float m_value;
     public float value {
@@ -33,6 +34,7 @@ public class Attribute
     public float weightModifier = 1;
 
     public bool isInverseCalc = false;
+
 
     public void SetValue(float v) {
         m_value = Mathf.Clamp(v, minValue, maxValue);

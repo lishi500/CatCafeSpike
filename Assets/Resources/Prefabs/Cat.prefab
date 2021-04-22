@@ -97,12 +97,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body:
-    hunger: 0
-    thirst: 0
-    mood: 0
-    hungerMax: 0
-    thirstMax: 100
-    moodMax: 100
+    hunger:
+      type: 1
+      m_value: 75
+      maxValue: 100
+      minValue: 0
+      adder: 0
+      modifier: 1
+      m_weight: 1.5
+      weightAdder: 0
+      weightModifier: 1
+      isInverseCalc: 0
+    thirst:
+      type: 2
+      m_value: 80
+      maxValue: 100
+      minValue: 0
+      adder: 0
+      modifier: 1
+      m_weight: 1
+      weightAdder: 0
+      weightModifier: 1
+      isInverseCalc: 0
+    mood:
+      type: 5
+      m_value: 80
+      maxValue: 100
+      minValue: 0
+      adder: 0
+      modifier: 1
+      m_weight: 1
+      weightAdder: 0
+      weightModifier: 1
+      isInverseCalc: 0
+    energy:
+      type: 3
+      m_value: 90
+      maxValue: 100
+      minValue: 0
+      adder: 0
+      modifier: 1
+      m_weight: 1.2
+      weightAdder: 0
+      weightModifier: 1
+      isInverseCalc: 1
+    tiredness:
+      type: 4
+      m_value: 10
+      maxValue: 100
+      minValue: 0
+      adder: 0
+      modifier: 1
+      m_weight: 1.5
+      weightAdder: 0
+      weightModifier: 1
+      isInverseCalc: 1
   attriburte:
     walkSpeed: 1
     runSpeed: 2.5

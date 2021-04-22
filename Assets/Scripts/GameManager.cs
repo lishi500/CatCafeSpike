@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         chain.PushTask(eatTask);
 
         chain.StartTaskChain();
-        ball.KnockBy(testCat.transform.position);
+        ball.PlayBy(testCat);
     }
 
     int delayAction = 5;

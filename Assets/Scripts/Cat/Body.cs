@@ -26,7 +26,7 @@ public class Body
         thirst.SetValue(thirst.maxValue);
     }
 
-    public List<Attribute> GetAllAttributes() { 
+    public List<Attribute> GetAllBodyAttributes() { 
         return new List<Attribute>{ hunger, thirst, mood, energy, tiredness };
     }
 }
