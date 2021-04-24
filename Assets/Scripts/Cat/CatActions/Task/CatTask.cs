@@ -10,4 +10,8 @@ public abstract class CatTask : Task
         targetPosition = tar;
         this.cat = cat;
     }
+
+    protected void TextAnimation(string txt) {
+        TextUtil.Instance.SetFollowText(cat.gameObject, txt);
+    }
 }

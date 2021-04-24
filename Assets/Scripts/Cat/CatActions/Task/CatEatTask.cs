@@ -25,14 +25,15 @@ public class CatEatTask : CatTask
     }
 
     protected override IEnumerator TaskStart() {
-        if (foodBow.CanCatInteract(cat)) { 
-            TaskAnimation();
-            foodBow.CatInteraction(cat);
+        if (foodBow.CanCatInteract(cat)) {
+            foodBow.PreCatInteraction(cat);
             yield return StartCoroutine(EatTask());
         }
     }
 
     IEnumerator EatTask() {
+        TaskAnimation();
+        foodBow.CatInteraction(cat);
         yield return new WaitForSeconds(eatTime);
         OnTaskFinished();
     }
@@ -42,6 +43,7 @@ public class CatEatTask : CatTask
     }
 
     protected override void TaskEnd() {
+        foodBow.InteractionEnd(cat);
         TextUtil.Instance.SetFollowText(cat.gameObject, cat.name);
     }
 

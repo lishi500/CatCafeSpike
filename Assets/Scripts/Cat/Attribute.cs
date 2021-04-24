@@ -11,7 +11,7 @@ public class Attribute
     [SerializeField]
     private float m_value;
     public float value {
-        get { return value; }
+        get { return m_value; }
         set { SetValue(value); }
     }
     public float maxValue = 100;
@@ -25,7 +25,7 @@ public class Attribute
     [SerializeField]
     private float m_weight = 1;
     public float weight {
-        get { return (weight + weightAdder) * weightModifier; }
+        get { return (m_weight + weightAdder) * weightModifier; }
         set { m_weight = value; }
     }
     [HideInInspector]

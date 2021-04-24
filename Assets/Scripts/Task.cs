@@ -38,7 +38,6 @@ public abstract class Task : MonoBehaviour
     protected abstract void TaskAnimation();
     protected abstract void TaskEnd();
 
-
     public virtual void OnTaskStarted() {
         if (notifyTaskStart != null) {
             notifyTaskStart(this);

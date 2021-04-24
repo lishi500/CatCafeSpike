@@ -8,10 +8,13 @@ public class AIUtils : Singleton<AIUtils>
     public AttributeType AttrChanceCalc(List<AICondition> conditions) {
         float totalChance = conditions.Select(cond => cond.weightedChange).ToArray().Sum();
         float rndNumber = Random.Range(0, totalChance);
+        //Debug.Log("rand form 0 to " + totalChance + " >> " + rndNumber);
         float sumChange = 0;
         for (int i = 0; i < conditions.Count(); i++) {
             sumChange += conditions[i].weightedChange;
+            //Debug.Log(conditions[i].type + ":" + conditions[i].weightedChange + " >> " + sumChange + " : " + rndNumber);
             if (rndNumber <= sumChange) {
+                //Debug.Log("Select " + conditions[i].type);
                 return conditions[i].type;
             }
         }

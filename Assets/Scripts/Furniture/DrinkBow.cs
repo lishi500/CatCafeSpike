@@ -2,30 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DrinkBow : FurnitureBase
-{
+public class DrinkBow : CatFurniture {
     public override bool CanCatInteract(Cat cat) {
-        foreach (InteractPoint interactPoint in interactPoints) {
-            if (interactPoint.reserveCat == cat) {
-                return true;
-            }
-        }
-
-        return false;
+        return HasCatReservered(cat);
     }
-
-    public override bool CanCustomerInteract(Customer customer) {
-        return false;
-    }
-
+  
     public override void CatInteraction(Cat cat) {
         if (CanCatInteract(cat)) { 
         
         }
     }
 
-    public override void CustomerInteraction(Customer customer) {
-    }
 
     protected override void OnUserClick() {
     }
@@ -34,4 +21,5 @@ public class DrinkBow : FurnitureBase
         base.Awake();
         canClick = false;
     }
+
 }

@@ -2,36 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodBow : FurnitureBase {
+public class FoodBow : CatFurniture {
     public int currentFood;
     public int maxFood;
 
     public override bool CanCatInteract(Cat cat) {
-        if (currentFood > 0) {
-            foreach (InteractPoint interactPoint in interactPoints) {
-                if (interactPoint.reserveCat == cat) {
-                    return true;
-                }
-            }
+        if (currentFood > 0 && HasCatReservered(cat)) {
+            return true;
         }
-
         return false;
     }
-
-    public override bool CanCustomerInteract(Customer customer) {
-        return false;
-    }
-
-
     public override void CatInteraction(Cat cat) {
-        if (CanCatInteract(cat)) {
-            currentFood -= 1;
-            UpdateFoodCount();
-        }
-    }
-
-    public override void CustomerInteraction(Customer customer) {
-
+        currentFood -= 1;
+        UpdateFoodCount();
     }
 
     protected override void OnUserClick() {
@@ -48,4 +31,5 @@ public class FoodBow : FurnitureBase {
     private void Start() {
         UpdateFoodCount();
     }
+
 }

@@ -4,14 +4,15 @@ using UnityEngine;
 
 public enum CatAIState 
 {
-   Idle,
-   Wander,
-   LickHair,
-   Sleep,
-   Eat,
-   Drink,
-   SelfPlay, // jump table, chase tail, jump tree
-   PlayToy, // chase rat, play ball, 
-   PlayWithCustomer,
-   PlayWithCat
+    None,
+    Idle,
+    Wander,
+    LickHair,
+    Sleep,
+    Eat,
+    Drink,
+    SelfPlay, // jump table, chase tail, jump tree
+    PlayToy, // chase rat, play ball, 
+    PlayWithCustomer,
+    PlayWithCat
 }
