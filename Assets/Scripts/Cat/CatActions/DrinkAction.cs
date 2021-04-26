@@ -27,4 +27,8 @@ public class DrinkAction : Action
     public void OnTaskChainEnd(TaskChain taskChain) {
         ActionEnd();
     }
+
+    public override void Interrupt() {
+        throw new System.NotImplementedException();
+    }
 }

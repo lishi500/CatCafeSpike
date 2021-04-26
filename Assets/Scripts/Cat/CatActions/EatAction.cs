@@ -32,4 +32,7 @@ public class EatAction : Action {
         ActionEnd();
     }
 
+    public override void Interrupt() {
+        throw new System.NotImplementedException();
+    }
 }

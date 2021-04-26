@@ -30,43 +30,55 @@ public class CatAI : MonoBehaviour
     }
 
     CatAIState SelectNextAIState(AttributeType type) {
-        //switch (type) {
-        //    case AttributeType.NONE:
-        //        return CatAIState.Idle;
-        //    case AttributeType.HUNGRY:
-        //        return CatAIState.Eat;
-        //    case AttributeType.THIRSTY:
-        //        return CatAIState.Drink;
-        //    case AttributeType.MOOD:
-        //        return CatAIState.PlayWithCustomer;
-        //    case AttributeType.TIREDNESS:
-        //        return CatAIState.Sleep;
-        //    case AttributeType.ENERGY:
-        //        return CatAIState.PlayToy;
-        //    default:
-        //        return CatAIState.Idle;
-        //}
-        return CatAIState.Eat;
+        switch (type) {
+            case AttributeType.NONE:
+                return CatAIState.Idle;
+            case AttributeType.HUNGRY:
+                return CatAIState.Eat;
+            case AttributeType.THIRSTY:
+                return CatAIState.Drink;
+            case AttributeType.MOOD: // TODO add after finish Customer
+                //return CatAIState.PlayWithCustomer;
+                return CatAIState.Sleep;
+            case AttributeType.TIREDNESS:
+                return CatAIState.Sleep;
+            case AttributeType.ENERGY:
+                return CatAIState.PlayToy;
+            default:
+                return CatAIState.Idle;
+        }
     }
 
     public void NextAction(CatAIState state) {
         currentAIState = state;
         isProcessing = true;
         switch (state) {
+            case CatAIState.Idle:
+                StartNoneTargetAction(typeof(IdleAction));
+                break;
             case CatAIState.Eat:
-                currentAction = cat.gameObject.AddComponent<EatAction>();
-                currentAction.Init(cat.gameObject, null);
-                currentAction.StartAction();
+                StartNoneTargetAction(typeof(EatAction));
                 break;
             case CatAIState.Drink:
-                currentAction = cat.gameObject.AddComponent<DrinkAction>();
-                currentAction.Init(cat.gameObject, null);
-                currentAction.StartAction();
+                StartNoneTargetAction(typeof(DrinkAction));
+                break;
+            case CatAIState.PlayWithCustomer:
+                break;
+            case CatAIState.Sleep:
+                StartNoneTargetAction(typeof(SleepAction));
+                break;
+            case CatAIState.PlayToy:
                 break;
             default:
                 break;
         }
         currentAction.notifyActionEnd += OnActionEnd;
+    }
+
+    private void StartNoneTargetAction(System.Type type) {
+        currentAction = cat.gameObject.AddComponent(type) as Action;
+        currentAction.Init(cat.gameObject, null);
+        currentAction.StartAction();
     }
 
     private void OnActionEnd(Action action) {

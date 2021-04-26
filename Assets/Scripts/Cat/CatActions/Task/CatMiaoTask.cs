@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CatPlayBallTask : CatTask
+public class CatMiaoTask : CatTask
 {
     public override bool PreTaskCheck() {
-        throw new System.NotImplementedException();
+        return true;
     }
 
     protected override void TaskAnimation() {
-        throw new System.NotImplementedException();
+        TextAnimation("miao~~");
     }
 
     protected override void TaskEnd() {
-        throw new System.NotImplementedException();
+        TextAnimation(cat.name);
     }
 
     protected override IEnumerator TaskStart() {
-        throw new System.NotImplementedException();
+        TaskAnimation();
+        yield return new WaitForSeconds(TaskTimeDef.MiaoTime);
+        OnTaskFinished();
     }
-
-   
 }

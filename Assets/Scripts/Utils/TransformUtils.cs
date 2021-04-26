@@ -129,6 +129,12 @@ public class TransformUtils : Singleton<TransformUtils>
         }
     }
 
+    public GameObject SelectNearestObj(GameObject source, GameObject[] targets) {
+        //GameObject nearest = targets.OrderBy(obj => Vector3.Distance(source.transform.position, obj.transform.position)).First();
+        GameObject nearest = targets.Aggregate((min, x) => DistanceBetweenObject(source, x) < DistanceBetweenObject(source, min) ? x : min);
+        return nearest;
+    }
+
     /*public IEnumerator FadeOut(MeshRenderer targetMeshRender, float duration) {
         if (targetMeshRender != null) {
             float startTime = Time.time;

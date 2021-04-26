@@ -13,6 +13,7 @@ public abstract class Action : MonoBehaviour
     public event ActionEndEvent notifyActionEnd;
 
     public abstract void StartAction();
+    public abstract void Interrupt();
 
     protected virtual void Awake() {
         catCafe = GameManager.Instance.catCafe;
