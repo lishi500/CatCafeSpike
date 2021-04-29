@@ -75,6 +75,10 @@ public class CatAI : MonoBehaviour
         currentAction.notifyActionEnd += OnActionEnd;
     }
 
+    private void PlayToyAction() {
+        currentAction = cat.gameObject.AddComponent<PlayToyAction>();
+    }
+
     private void StartNoneTargetAction(System.Type type) {
         currentAction = cat.gameObject.AddComponent(type) as Action;
         currentAction.Init(cat.gameObject, null);

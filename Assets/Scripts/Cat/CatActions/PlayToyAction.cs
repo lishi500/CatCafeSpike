@@ -25,6 +25,8 @@ public class PlayToyAction : Action
             // TODO more toys
             toyTask = ActionUtils.Instance.CreatCatTaskByType(TaskType.PlayBall, toyObj, Vector3.zero, GetCat());
         }
+        CatWalkTask walkTask = actionHolder.AddComponent<CatWalkTask>();
+        walkTask.SetTaskTarget(null, toyObj.transform.position, GetCat());
     }
 
     public override void Interrupt() {
