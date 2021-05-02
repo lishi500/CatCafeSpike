@@ -10,6 +10,7 @@ public class EatAction : Action {
         FurnitureBase foodBow = catCafe.GetFurnitureByType(FurnitureType.Food);
         InteractPoint point = foodBow.ReserveInteractionPoint(cat);
         if (point == null) {
+            // TODO need to check, there is bug when two cat both reserve 
             ActionEnd();
             return;
         }

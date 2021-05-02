@@ -41,7 +41,7 @@ public class TaskChain : MonoBehaviour {
     //}
     private void ExecuteCurrentTask() {
         isExecuting = true;
-        Debug.Log("Executing task " + currentTask.taskName);
+        //Debug.Log("Executing task " + currentTask.taskName);
         currentTask.StartTask();
     }
 
@@ -63,7 +63,7 @@ public class TaskChain : MonoBehaviour {
 
     private void MoveToNextTask() {
         Task nextTask = taskQueue.Dequeue();
-        Debug.Log("Move to next Task -> " + nextTask.taskName);
+        //Debug.Log("Move to next Task -> " + nextTask.taskName);
         currentTask = nextTask;
     }
     private IEnumerator WaitAndStartNextTask() {

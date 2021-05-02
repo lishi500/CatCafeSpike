@@ -28,18 +28,20 @@ public class CatDrinkTask : CatTask
     }
 
     protected override void TaskEnd() {
+        drinkBow.InteractionEnd(cat);
         TextUtil.Instance.SetFollowText(cat.gameObject, cat.name);
     }
 
     protected override IEnumerator TaskStart() {
         if (drinkBow.CanCatInteract(cat)) {
-            TaskAnimation();
-            drinkBow.CatInteraction(cat);
+            drinkBow.PreCatInteraction(cat);
             yield return StartCoroutine(DrinkTask());
         }
     }
 
     private IEnumerator DrinkTask() {
+        TaskAnimation();
+        drinkBow.CatInteraction(cat);
         yield return new WaitForSeconds(4f);
         OnTaskFinished();
     }

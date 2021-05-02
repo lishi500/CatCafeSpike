@@ -153,6 +153,61 @@ MonoBehaviour:
       weightAdder: 0
       weightModifier: 1
       isInverseCalc: 1
+    hungryConsumptionRate:
+      type: 0
+      m_value: 1.5
+      maxValue: 100
+      minValue: 0
+      adder: 0
+      modifier: 1
+      m_weight: 1
+      weightAdder: 0
+      weightModifier: 1
+      isInverseCalc: 0
+    thirstConsumptionRate:
+      type: 0
+      m_value: 0.5
+      maxValue: 100
+      minValue: 0
+      adder: 0
+      modifier: 1
+      m_weight: 1
+      weightAdder: 0
+      weightModifier: 1
+      isInverseCalc: 0
+    energyConsumptionRate:
+      type: 0
+      m_value: 1
+      maxValue: 100
+      minValue: 0
+      adder: 0
+      modifier: 1
+      m_weight: 1
+      weightAdder: 0
+      weightModifier: 1
+      isInverseCalc: 0
+    moodConsumptionRate:
+      type: 0
+      m_value: 0.2
+      maxValue: 100
+      minValue: 0
+      adder: 0
+      modifier: 1
+      m_weight: 1
+      weightAdder: 0
+      weightModifier: 1
+      isInverseCalc: 0
+    tirednessConsumptionRate:
+      type: 0
+      m_value: 0.3
+      maxValue: 100
+      minValue: 0
+      adder: 0
+      modifier: 1
+      m_weight: 1
+      weightAdder: 0
+      weightModifier: 1
+      isInverseCalc: 0
   attriburte:
     walkSpeed: 1
     runSpeed: 2.5
@@ -180,5 +235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20cb776f3b055c44874ef12718510a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentAIState: 0
   isAIEnabled: 1
   isProcessing: 0

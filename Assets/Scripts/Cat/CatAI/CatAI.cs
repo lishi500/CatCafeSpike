@@ -92,7 +92,7 @@ public class CatAI : MonoBehaviour
     }
 
     private void OnActionEnd(Action action) {
-        Debug.Log("OnActionEnd " + action.name );
+        //Debug.Log("OnActionEnd " + action.name );
         currentAIState = CatAIState.None;
         isProcessing = false;
     }
@@ -116,9 +116,9 @@ public class CatAI : MonoBehaviour
     {
         if (isAIEnabled && !isProcessing) {
             AttributeType attributeType = SelectNextAttribute();
-            Debug.Log("Next Attribute " + attributeType);
+            //Debug.Log("Next Attribute " + attributeType);
             CatAIState catAIState = SelectNextAIState(attributeType);
-            Debug.Log("Next AI state " + catAIState);
+            //Debug.Log("Next AI state " + catAIState);
 
             NextAction(catAIState);
         }

@@ -9,4 +9,5 @@ public class CatAttriburte
 {
     public float walkSpeed = 1;
     public float runSpeed = 2.5f;
+
 }

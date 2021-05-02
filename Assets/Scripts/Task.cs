@@ -46,7 +46,7 @@ public abstract class Task : MonoBehaviour
         }
     }
     public virtual void OnTaskFinished() {
-        Debug.Log(taskName + " Finished");
+        //Debug.Log(taskName + " Finished");
         if (notifyTaskEnd != null) {
             notifyTaskEnd(this);
         }

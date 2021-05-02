@@ -16,14 +16,24 @@ public class Body
     public Attribute energy;
     public Attribute tiredness;
 
+    public Attribute hungryConsumptionRate;
+    public Attribute thirstConsumptionRate;
+    public Attribute energyConsumptionRate;
+    public Attribute moodConsumptionRate;
+    public Attribute tirednessConsumptionRate;
 
     // sick
     public void Eat() {
-        hunger.SetValue(hunger.maxValue);
+        hunger.AddValue(25);
     }
 
     public void Drink() {
-        thirst.SetValue(thirst.maxValue);
+        thirst.SetValue(50);
+    }
+
+    public void ConsumeBodyAttribute(Attribute attr, Attribute attrConsumetionRate, bool isInverse = false) {
+        float consumeAmount = attrConsumetionRate.GetProcessedValue() * (isInverse ? -1 : 1);
+        attr.SubValue(consumeAmount);
     }
 
     public List<Attribute> GetAllBodyAttributes() { 

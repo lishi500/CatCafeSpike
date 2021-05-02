@@ -14,6 +14,7 @@ public class FoodBow : CatFurniture {
     }
     public override void CatInteraction(Cat cat) {
         currentFood -= 1;
+        cat.body.Eat();
         UpdateFoodCount();
     }
 
