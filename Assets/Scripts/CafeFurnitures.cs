@@ -8,5 +8,7 @@ public class CafeFurnitures
 {
     public int count = 5;
     public FoodBow foodBow;
+    public DrinkBow drinkBow;
+    public CatTree catTree;
 
 }

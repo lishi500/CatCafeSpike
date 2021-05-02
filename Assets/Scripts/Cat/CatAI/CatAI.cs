@@ -5,7 +5,7 @@ using UnityEngine;
 public class CatAI : MonoBehaviour
 {
     Cat cat;
-    CatAIState currentAIState;
+    public CatAIState currentAIState;
     Action currentAction;
     private List<Attribute> m_bodyAttributes;
     public bool isAIEnabled = true;
@@ -63,11 +63,14 @@ public class CatAI : MonoBehaviour
                 StartNoneTargetAction(typeof(DrinkAction));
                 break;
             case CatAIState.PlayWithCustomer:
+                // TODO need to craete customer
+                PlayToyAction();
                 break;
             case CatAIState.Sleep:
                 StartNoneTargetAction(typeof(SleepAction));
                 break;
             case CatAIState.PlayToy:
+                PlayToyAction();
                 break;
             default:
                 break;
@@ -77,6 +80,9 @@ public class CatAI : MonoBehaviour
 
     private void PlayToyAction() {
         currentAction = cat.gameObject.AddComponent<PlayToyAction>();
+        // TODO use action to find nearstBall
+        currentAction.Init(cat.gameObject, null);
+        currentAction.StartAction();
     }
 
     private void StartNoneTargetAction(System.Type type) {

@@ -30,7 +30,9 @@ public abstract class Task : MonoBehaviour
         if (notifyTaskInterrupt != null) {
             notifyTaskInterrupt(this);
         }
-        StopCoroutine(currentCoroutine);
+        if (currentCoroutine != null) { 
+            StopCoroutine(currentCoroutine);
+        }
     }
 
     public abstract bool PreTaskCheck();

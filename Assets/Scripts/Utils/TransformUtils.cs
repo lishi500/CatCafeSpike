@@ -21,7 +21,7 @@ public class TransformUtils : Singleton<TransformUtils>
         return Vector3.Distance(obj1.transform.position, obj2.transform.position);
     }
 
-    public Vector3 DistanceToPosition(Vector3 from, Vector3 to, float stopDistance)
+    public Vector3 PositionWithStopDistance(Vector3 from, Vector3 to, float stopDistance)
     {
         Vector3 direction = to - from;
         return from + (direction - (direction.normalized * stopDistance));
@@ -131,8 +131,12 @@ public class TransformUtils : Singleton<TransformUtils>
 
     public GameObject SelectNearestObj(GameObject source, GameObject[] targets) {
         //GameObject nearest = targets.OrderBy(obj => Vector3.Distance(source.transform.position, obj.transform.position)).First();
-        GameObject nearest = targets.Aggregate((min, x) => DistanceBetweenObject(source, x) < DistanceBetweenObject(source, min) ? x : min);
-        return nearest;
+        if (targets.Length == 1) {
+            return targets[0];
+        } else if (targets.Length > 1) { 
+            return targets.Aggregate((min, x) => DistanceBetweenObject(source, x) < DistanceBetweenObject(source, min) ? x : min);
+        }
+        return null;
     }
 
     /*public IEnumerator FadeOut(MeshRenderer targetMeshRender, float duration) {

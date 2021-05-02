@@ -5,8 +5,22 @@ using UnityEngine;
 public class CatDrinkTask : CatTask
 {
     DrinkBow drinkBow;
+
+    public override void SetTaskTarget(GameObject obj, Vector3 tar, Cat cat) {
+        interactionObject = obj;
+        targetPosition = tar;
+        this.cat = cat;
+        drinkBow = obj.GetComponent<DrinkBow>();
+    }
+
     public override bool PreTaskCheck() {
-        throw new System.NotImplementedException();
+        foreach (InteractPoint interactPoint in drinkBow.interactPoints) {
+            if (Vector3.Distance(interactPoint.transform.position, cat.transform.position) < 0.1f) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     protected override void TaskAnimation() {
@@ -31,6 +45,5 @@ public class CatDrinkTask : CatTask
     }
 
     private void Awake() {
-        drinkBow = interactionObject.GetComponent<DrinkBow>();
     }
 }

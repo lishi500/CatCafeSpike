@@ -7,7 +7,7 @@ public class FoodBow : CatFurniture {
     public int maxFood;
 
     public override bool CanCatInteract(Cat cat) {
-        if (currentFood > 0 && HasCatReservered(cat)) {
+        if (currentFood > 0 && HasCatReservered(cat) && CanOccupy(cat)) {
             return true;
         }
         return false;

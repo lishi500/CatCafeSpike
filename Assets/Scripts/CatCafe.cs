@@ -10,7 +10,10 @@ public class CatCafe : MonoBehaviour
         switch (type) {
             case FurnitureType.Food:
                 return furnitures.foodBow;
+            case FurnitureType.Water:
+                return furnitures.drinkBow;
             default:
+                Debug.LogError("CafeFurnitures Type not defined");
                 return furnitures.foodBow;
         }
     }

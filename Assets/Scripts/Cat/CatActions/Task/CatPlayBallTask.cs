@@ -9,23 +9,26 @@ public class CatPlayBallTask : CatTask
         interactionObject = obj;
         targetPosition = tar;
         this.cat = cat;
-        Ball ball = interactionObject.GetComponent<Ball>();
+        ball = obj.GetComponent<Ball>();
     }
 
     public override bool PreTaskCheck() {
         return true;
     }
     protected override void TaskAnimation() {
-        throw new System.NotImplementedException();
+        TextAnimation("Play ball");
     }
 
     protected override void TaskEnd() {
-        throw new System.NotImplementedException();
+        TextAnimation(cat.name);
     }
 
     protected override IEnumerator TaskStart() {
-        throw new System.NotImplementedException();
+        float pushPower = Random.Range(0.5f, 3f);
+        ball.PlayBy(cat, pushPower);
+
+        yield return new WaitForSeconds(0.5f);
+        OnTaskFinished();
     }
 
-   
 }

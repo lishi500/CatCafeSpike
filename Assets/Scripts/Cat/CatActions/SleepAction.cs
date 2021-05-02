@@ -8,7 +8,13 @@ public class SleepAction : Action {
     }
 
     public override void StartAction() {
-        CatTask sleepTask = ActionUtils.Instance.CreatCatTaskByType(TaskType.Sleep, null, Vector3.zero, GetCat());
+        CatSleepTask sleepTask = ActionUtils.Instance.CreatCatTaskByType(TaskType.Sleep, null, Vector3.zero, GetCat()) as CatSleepTask;
         sleepTask.StartTask();
+
+        sleepTask.notifyTaskEnd += OnTaskEnd;
+    }
+
+    public void OnTaskEnd(Task task) {
+        ActionEnd();
     }
 }

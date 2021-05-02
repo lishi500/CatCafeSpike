@@ -6,7 +6,11 @@ public abstract class CatFurniture : FurnitureBase
 {
     public override void InteractionEnd(Cat cat) {
         InteractPoint point = GetOccupiedPoint(cat);
-        point.ReleaseOccupy();
+        if (point != null) {
+            point.ReleaseOccupy();
+        } else {
+            Debug.LogError("occupied list not found");
+        }
         NotifyEnd(cat);
     }
   
@@ -19,6 +23,10 @@ public abstract class CatFurniture : FurnitureBase
         return GetReservedPoint(cat) != null;
     }
 
+    public bool CanOccupy(Cat cat) {
+        InteractPoint point = GetReservedPoint(cat);
+        return !point.isOccupied;
+    }
 
     // ignore customer interaction
     public override bool CanCustomerInteract(Customer customer) {

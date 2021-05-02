@@ -9,40 +9,43 @@ public class ActionUtils : Singleton<ActionUtils>
         CatTask task;
         switch (taskType) {
             case TaskType.Idle:
-                task = new CatIdleTask();
+                task = holder.AddComponent<CatIdleTask>();
                 break;
             case TaskType.Drink:
-                task = new CatDrinkTask();
+                task = holder.AddComponent<CatDrinkTask>();
                 break;
             case TaskType.Eat:
-                task = new CatEatTask();
+                task = holder.AddComponent<CatEatTask>();
                 break;
             case TaskType.LickHair:
-                task = new CatLickHairTask();
+                task = holder.AddComponent<CatLickHairTask>();
                 break;
             case TaskType.Miao:
-                task = new CatMiaoTask();
+                task = holder.AddComponent<CatMiaoTask>();
                 break;
             case TaskType.PlayBall:
-                task = new CatPlayBallTask();
+                task = holder.AddComponent<CatPlayBallTask>();
                 break;
             case TaskType.PlayWithCat:
-                task = new CatPlaywithCatTask();
+                task = holder.AddComponent<CatPlaywithCatTask>();
                 break;
             case TaskType.SelfPlay:
-                task = new CatSelfPlayTask();
+                task = holder.AddComponent<CatSelfPlayTask>();
                 break;
             case TaskType.Sleep:
-                task = new CatSleepTask();
+                task = holder.AddComponent<CatSleepTask>();
                 break;
             case TaskType.Tickle:
-                task = new CatTickleTask();
+                task = holder.AddComponent<CatTickleTask>();
                 break;
             case TaskType.Walk:
-                task = new CatWalkTask();
+                task = holder.AddComponent<CatWalkTask>();
+                break;
+            case TaskType.Run:
+                task = holder.AddComponent<CatRunTask>();
                 break;
             default:
-                task = new CatIdleTask();
+                task = holder.AddComponent<CatIdleTask>();
                 break;
         }
         task.SetTaskTarget(obj, tar, cat);

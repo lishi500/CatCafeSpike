@@ -9,9 +9,12 @@ public class DrinkAction : Action
 
         FurnitureBase drinkBow = catCafe.GetFurnitureByType(FurnitureType.Water);
         InteractPoint point = drinkBow.ReserveInteractionPoint(cat);
-
+        if (point == null) {
+            ActionEnd();
+            return;
+        }
         CatWalkTask walkTask = actionHolder.AddComponent<CatWalkTask>();
-        walkTask.SetTaskTarget(null, point.transform.position, cat);
+        walkTask.SetTaskTarget(drinkBow.gameObject, point.transform.position, cat);
 
         CatDrinkTask drinkTask = actionHolder.AddComponent<CatDrinkTask>();
         drinkTask.SetTaskTarget(drinkBow.gameObject, Vector3.zero, cat);

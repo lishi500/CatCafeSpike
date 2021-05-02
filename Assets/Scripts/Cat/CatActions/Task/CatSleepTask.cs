@@ -27,16 +27,17 @@ public class CatSleepTask : CatTask
     protected override IEnumerator TaskStart() {
         isStarted = true;
         TaskAnimation();
-        yield return null;
+        yield return new WaitForSeconds(TaskTimeDef.SleepTime);
+        OnTaskFinished();
     }
 
     private void Update() {
-        if (isStarted) {
-            if (sleepTime > pastTime && !isGetInterrupt) {
-                pastTime += Time.deltaTime;
-            } else {
-                OnTaskFinished();
-            }
-        }
+        //if (isStarted) {
+        //    if (sleepTime > pastTime && !isGetInterrupt) {
+        //        pastTime += Time.deltaTime;
+        //    } else {
+        //        OnTaskFinished();
+        //    }
+        //}
     }
 }

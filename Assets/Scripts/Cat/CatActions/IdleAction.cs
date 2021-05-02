@@ -37,6 +37,11 @@ public class IdleAction : Action
             RandomSelectIdelTask();
         }
         idleTask.StartTask();
+        idleTask.notifyTaskEnd += OnTaskEnd;
+    }
+
+    public void OnTaskEnd(Task task) {
+        ActionEnd();
     }
 
     public override void Interrupt() {

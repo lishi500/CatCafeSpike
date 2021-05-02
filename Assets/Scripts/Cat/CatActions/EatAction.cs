@@ -15,7 +15,7 @@ public class EatAction : Action {
         }
         // TODO if no point
         CatWalkTask walkTask = actionHolder.AddComponent<CatWalkTask>();
-        walkTask.SetTaskTarget(null, point.transform.position, cat);
+        walkTask.SetTaskTarget(foodBow.gameObject, point.transform.position, cat);
 
         CatEatTask eatTask = actionHolder.AddComponent<CatEatTask>();
         eatTask.SetTaskTarget(foodBow.gameObject, Vector3.zero, cat);

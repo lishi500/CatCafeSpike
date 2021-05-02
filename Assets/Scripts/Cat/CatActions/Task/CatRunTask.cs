@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CatRunTask : CatTask {
-
+    public float StopDistance = 0;
     public override bool PreTaskCheck() {
         return true;
     }
@@ -15,7 +15,7 @@ public class CatRunTask : CatTask {
     }
 
     protected override void TaskAnimation() {
-        TextUtil.Instance.SetFollowText(cat.gameObject, "Run");
+        TextUtil.Instance.SetFollowText(cat.gameObject, "Run" + (interactionObject != null ? " towards " + interactionObject.name : ""));
     }
 
     protected override void TaskEnd() {
@@ -24,7 +24,7 @@ public class CatRunTask : CatTask {
 
     IEnumerator RunToPos() {
         Vector3 starPos = cat.transform.position;
-        Vector3 endPos = targetPosition;
+        Vector3 endPos = TransformUtils.Instance.PositionWithStopDistance(starPos, targetPosition, StopDistance);
         float distance = Vector3.Distance(starPos, endPos);
         float etc = distance / cat.attriburte.runSpeed;
         bool reachTarget = false;
@@ -47,6 +47,6 @@ public class CatRunTask : CatTask {
     }
 
     void Awake() {
-        taskName = "Cat Walk Task";
+        taskName = "Cat Run Task";
     }
 }

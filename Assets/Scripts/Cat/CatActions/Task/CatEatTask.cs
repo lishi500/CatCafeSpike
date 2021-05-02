@@ -28,6 +28,8 @@ public class CatEatTask : CatTask
         if (foodBow.CanCatInteract(cat)) {
             foodBow.PreCatInteraction(cat);
             yield return StartCoroutine(EatTask());
+        } else { 
+            
         }
     }
 

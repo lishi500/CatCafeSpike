@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CatWalkTask : CatTask
 {
-  
+    public float StopDistance = 0;
     public override bool PreTaskCheck() {
         return true;
     }
@@ -16,7 +16,7 @@ public class CatWalkTask : CatTask
     }
 
     protected override void TaskAnimation() {
-        TextUtil.Instance.SetFollowText(cat.gameObject, "Walk");
+        TextUtil.Instance.SetFollowText(cat.gameObject, "Walk " + (interactionObject != null ? " towards " + interactionObject.name : ""));
     }
 
     protected override void TaskEnd() {
@@ -25,7 +25,7 @@ public class CatWalkTask : CatTask
 
     IEnumerator WalkToPos() {
         Vector3 starPos = cat.transform.position;
-        Vector3 endPos = targetPosition;
+        Vector3 endPos = TransformUtils.Instance.PositionWithStopDistance(starPos, targetPosition, StopDistance); 
         float distance = Vector3.Distance(starPos, endPos);
         float etc = distance / cat.attriburte.walkSpeed;
         bool reachTarget = false;

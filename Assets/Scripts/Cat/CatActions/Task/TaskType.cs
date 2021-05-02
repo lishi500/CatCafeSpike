@@ -15,5 +15,6 @@ public enum TaskType
     SelfPlay,
     Sleep,
     Tickle,
-    Walk
+    Walk,
+    Run
 }
