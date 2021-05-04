@@ -8,6 +8,7 @@ public class Storage : Singleton<Storage>
     public int catFood;
     public int catCan;
     public int heart;
+    public List<StackItem> items;
 
     public int WithdrawCatFood(int amount) {
         if (amount <= catFood) {
@@ -17,11 +18,15 @@ public class Storage : Singleton<Storage>
             catFood = 0;
             return catFood;
         }
+    } 
+
+    void LoadItems() { 
+        items = new List<StackItem>();
     }
     // Start is called before the first frame update
-    void Start()
+    protected override void Awake()
     {
-        
+        base.Awake();
     }
 
     // Update is called once per frame
