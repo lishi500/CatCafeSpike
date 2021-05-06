@@ -1,37 +1,48 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Storage : Singleton<Storage>
+[System.Serializable]
+public class Storage
 {
-    public int money;
-    public int catFood;
-    public int catCan;
-    public int heart;
-    public List<StackItem> items;
+    // TODO need secure
+    private long m_coin;
+    public long FishCoin {
+        get { return m_coin; }
+    }
+    private int m_heart;
+    public int Heart {
+        get { return m_heart; }
+    }
 
-    public int WithdrawCatFood(int amount) {
-        if (amount <= catFood) {
-            catFood -= amount;
-            return amount;
-        } else {
-            catFood = 0;
-            return catFood;
+    private List<StackItem> m_items;
+    public List<StackItem> Bag {
+        get { return m_items; }
+    }
+
+
+    public delegate void OnFishCoinNotEnough();
+    public OnFishCoinNotEnough notifyFishCoinNotEnough;
+
+    public bool WithdrawFishCoin(int amount) {
+        if (FishCoin >= amount) {
+            m_coin -= amount;
+            return true;
         }
-    } 
-
-    void LoadItems() { 
-        items = new List<StackItem>();
-    }
-    // Start is called before the first frame update
-    protected override void Awake()
-    {
-        base.Awake();
+        if (notifyFishCoinNotEnough != null) {
+            notifyFishCoinNotEnough();
+        }
+        return false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void DepositFishCoin(int amount) {
+        if (amount >= 0) {
+            m_coin += amount;
+        }
+    }
+
+    void LoadItems() {
+        m_items = new List<StackItem>();
     }
 }

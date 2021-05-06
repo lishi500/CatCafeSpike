@@ -10,10 +10,12 @@ public class InventoryManager : Singleton<InventoryManager>
     private List<StackItem> lastCollectedItems;
     //private UICollectItemController uICollectItemController;
 
-    public List<StackItem> tempInventory;
+    private List<StackItem> m_tempInventory;
     public List<StackItem> Bag {
-        get { return tempInventory; }
+        get { return m_tempInventory; }
     }
+
+  
 
     public delegate void OnItemAddEvent(StackItem item);
     public OnItemAddEvent notifyAddItem;
@@ -70,7 +72,7 @@ public class InventoryManager : Singleton<InventoryManager>
         }
 
     private void StandardSortInventory() { // highest leve > highest quality
-        tempInventory.Sort(delegate (StackItem x, StackItem y) {
+        m_tempInventory.Sort(delegate (StackItem x, StackItem y) {
             if (x.item.level != y.item.level)
             {
                 return x.item.level - y.item.level;
@@ -82,7 +84,7 @@ public class InventoryManager : Singleton<InventoryManager>
 
 
     private void AddItemToBag(StackItem item) {
-        ItemUtils.Instance.MergeAddItem(tempInventory, item, true);
+        ItemUtils.Instance.MergeAddItem(m_tempInventory, item, true);
         StandardSortInventory();
         if (notifyAddItem != null) {
             notifyAddItem(item);

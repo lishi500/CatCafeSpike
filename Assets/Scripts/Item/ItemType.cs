@@ -5,14 +5,9 @@ using UnityEngine;
 public enum ItemType
 {
     // treadable 
-   Crop,
-   Animal,
-   Seeds,
-   Product,
-   Dishes,
-   Book,
-   // 
-   Chest,
-   Corn,
-   Gem
+    CatCan,
+    CatCandy,
+    // system
+    FishCoin,
+    Heart
 }
